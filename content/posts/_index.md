@@ -1,6 +1,6 @@
 +++
-title = "My Blog"
-description = "My blog site."
+title = "Kathi Archives Posts"
+description = "A List of Previous Posts"
 sort_by = "date"
 template = "blog.html"
 page_template = "post.html"
@@ -10,8 +10,8 @@ generate_feeds = true
 [extra]
 lang = "en"
 
-title = "Posts"
-subtitle = "I write about ...."
+title = "All Posts"
+subtitle = "Here is a collection of all my writings."
 
 date_format = "%b %-d, %Y"
 
