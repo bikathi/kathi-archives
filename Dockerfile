@@ -2,7 +2,7 @@ FROM ghcr.io/getzola/zola:v0.17.1 AS zola
 
 COPY . /project
 WORKDIR /project
-RUN zola build
+RUN ["zola" "build"]
 
 FROM ghcr.io/static-web-server/static-web-server:2
 WORKDIR /
