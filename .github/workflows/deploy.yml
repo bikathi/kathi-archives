@@ -23,6 +23,15 @@ jobs:
                   source: "."
                   target: "~/kathi-archives"
 
+            # - name: Stop and remove old container
+            #   run: |
+            #       CONTAINER_ID=$(docker ps -q --filter "name=kathi-archives")
+            #       if [ ! -z "$CONTAINER_ID" ]; then
+            #           docker stop $CONTAINER_ID
+            #           docker rm $CONTAINER_ID
+            #           docker rmi kathi-archives:latest
+            #       fi
+
             - name: Build and run Docker container
               uses: appleboy/ssh-action@master
               with:
@@ -34,9 +43,7 @@ jobs:
                       cd ~/kathi-archives
                       git submodule init
                       git submodule update
-                      docker stop kathi-archives:latest || true
-                      docker rm kathi-archives:latest || true
                       docker build -t kathi-archives:latest .
-                      docker run -d -p 5300:80 kathi-archives:latest
+                      docker run -d -p 5300:80 kathi-archives:latest --name kathi-archives
                       cd ~
                       rm -rf ~/kathi-archives
