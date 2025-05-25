@@ -5,12 +5,12 @@ template = 'home.html'
 lang = 'en'
 
 # Show footer in home page
-footer = false
+footer = true
 
 # If you don't want to display id/bio/avatar, simply comment out that line
 name = "Bikathi Martin"
 # id = "bikathimartin"
-bio = "software developer, enjoyer of movies and cartoons"
+bio = "software developer, enjoyer of films and food"
 avatar = "img/home-img.jpg"
 links = [
     { name = "GitHub", icon = "github", url = "https://github.com/bikathi" },
@@ -19,7 +19,7 @@ links = [
 ]
 
 # Show a few recent posts in home page
-recent = false
+recent = true
 recent_max = 15
 recent_more_text = "more »"
 date_format = "%b %-d, %Y"
