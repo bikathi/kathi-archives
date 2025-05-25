@@ -23,14 +23,14 @@ jobs:
                   source: "."
                   target: "~/kathi-archives"
 
-            # - name: Stop and remove old container
-            #   run: |
-            #       CONTAINER_ID=$(docker ps -q --filter "name=kathi-archives")
-            #       if [ ! -z "$CONTAINER_ID" ]; then
-            #           docker stop $CONTAINER_ID
-            #           docker rm $CONTAINER_ID
-            #           docker rmi kathi-archives:latest
-            #       fi
+            - name: Stop and remove old container
+              run: |
+                  CONTAINER_ID=$(docker ps -q --filter "name=kathi-archives")
+                  if [ ! -z "$CONTAINER_ID" ]; then
+                      docker stop $CONTAINER_ID
+                      docker rm $CONTAINER_ID
+                      docker rmi kathi-archives:latest
+                  fi
 
             - name: Build and run Docker container
               uses: appleboy/ssh-action@master
