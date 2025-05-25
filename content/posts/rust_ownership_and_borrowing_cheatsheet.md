@@ -1,7 +1,7 @@
 +++
-title = "Understanding Rust Strings"
-description = "Rust Strings for Beginners"
-date = "2025-05-25"
+title = "Rust Ownership And Borrowing for Beginners"
+description = "Rust Ownership And Borrowing for Beginners"
+date = "2025-05-27"
 # updated = "2025-01-01"
 draft = false
 
