@@ -1,5 +1,5 @@
-base_url = "http://kathi-archives.bikathihub.tech"
-title = "Kathi Archives"
+base_url = "http://archives.bikathihub.tech"
+title = "Bikathi Archives"
 description = "My Personal Blog"
 default_language = "en"
 theme = "serene"
