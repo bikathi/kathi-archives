@@ -34,8 +34,8 @@ jobs:
                       cd ~/kathi-archives
                       git submodule init
                       git submodule update
-                      docker stop kathi-archives || true
-                      docker rm kathi-archives || true
+                      docker stop kathi-archives:latest || true
+                      docker rm kathi-archives:latest || true
                       docker build -t kathi-archives:latest .
                       docker run -d -p 5300:80 kathi-archives:latest
                       cd ~
