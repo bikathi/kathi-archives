@@ -30,6 +30,7 @@ jobs:
                       docker stop $CONTAINER_ID
                       docker rm $CONTAINER_ID
                       docker rmi kathi-archives:latest
+                      echo "Container stopped and removed"
                   fi
 
             - name: Build and run Docker container
