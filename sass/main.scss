@@ -57,15 +57,37 @@ a:focus-visible {
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .prose {
+    .post-gh-link { 
+      width: fit-content;
+      padding: .4rem;
+      display: inline-flex;
+      align-items: center;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(236, 236, 236, .1);
+      border-radius: var(--large-border-radius);
+      outline: none;
+      border-bottom: none;
+      
+      &:hover {
+        background-color: rgba(236, 236, 236, .15);
+      }
+      
+      span {
+        margin-left: 10px;  
+      }
+    }
+    
 	h1 {
-		font-size: 1.15em;
+		font-size: 1.30em;
 		font-weight: bolder;
 		margin: 1.5em 0 0.75em;
 	}
 
 	h2 {
-		font-size: 1.1em;
+		font-size: 1.20em;
 		margin: 3em 0 1.5em;
+		color: red;
 	}
 
 	h3,

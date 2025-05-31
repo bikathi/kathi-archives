@@ -20,6 +20,7 @@ math = false
 mermaid = false
 featured = false
 reaction = false
+gh_link = "https://github.com/bikathi/kathi-archives/blob/main/content/posts/rust_ownership_and_borrowing_cheatsheet.md"
 +++
 
 # Hello world

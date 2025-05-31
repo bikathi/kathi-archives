@@ -20,6 +20,7 @@ math = false
 mermaid = false
 featured = false
 reaction = false
+gh_link = "https://github.com/bikathi/kathi-archives/blob/main/content/posts/understanding_rust_strings.md"
 +++
 
 # Hello world
