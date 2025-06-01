@@ -43,6 +43,6 @@ jobs:
                       git submodule init
                       git submodule update
                       docker build -t kathi-archives:latest .
-                      docker run -d -p 5300:80 --name kathi-archives kathi-archives:latest
+                      docker run -d -p 5200:80 --name kathi-archives kathi-archives:latest
                       cd ~
                       rm -rf ~/kathi-archives
