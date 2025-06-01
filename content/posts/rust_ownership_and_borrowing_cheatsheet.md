@@ -26,7 +26,7 @@ gh_link = "https://github.com/bikathi/kathi-archives/blob/main/content/posts/rus
 # How Does Memory Work In Other Languages?
 When writing code in a language like Java, Python or Javascript (we'll use this for all the non-Rust examples in this article),
 you usually don't give two thoughts about where the data you are storing in your variables is being stored within the context of
-your application and the computers memory. This train of thought is usually abstracted from you by the '{<INSERT_LANGUAGE_NAME_HERE>'
+your application and the computers memory. This train of thought is usually abstracted from you by the <INSERT_LANGUAGE_NAME_HERE>
 Virtual Machine (for example the [Java Virtual Machine](https://en.wikipedia.org/wiki/Java_virtual_machine) for Java, and the 
 [Python Virtual Machine](https://www.geeksforgeeks.org/python-virtual-machine/) for Python).
 
