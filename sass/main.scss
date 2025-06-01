@@ -85,8 +85,7 @@ a:focus-visible {
 
 	h2 {
 		font-size: 1.20em;
-		margin: 3em 0 1.5em;
-		color: red;
+		margin: 2em 0 1.5em;
 	}
 
 	h3,
@@ -182,7 +181,7 @@ a:focus-visible {
 	}
 
 	li::marker {
-		color: var(--primary-color);
+		color: var(--text-color);
 	}
 
 	hr {
