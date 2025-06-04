@@ -1,48 +1,48 @@
-name: Deploy
+# name: Deploy
 
-on:
-    push:
-        branches:
-            - main
+# on:
+#     push:
+#         branches:
+#             - main
 
-jobs:
-    deploy:
-        runs-on: ubuntu-latest
+# jobs:
+#     deploy:
+#         runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+#         steps:
+#             - name: Checkout code
+#               uses: actions/checkout@v2
 
-            - name: Copy files to VPS
-              uses: appleboy/scp-action@master
-              with:
-                  host: ${{ secrets.HOST_IP_ADDRESS }}
-                  username: ${{ secrets.VPS_USERNAME }}
-                  port: 22
-                  key: ${{ secrets.VPS_PRIV_KEY }}
-                  source: "."
-                  target: "~/kathi-archives"
+#             - name: Copy files to VPS
+#               uses: appleboy/scp-action@master
+#               with:
+#                   host: ${{ secrets.HOST_IP_ADDRESS }}
+#                   username: ${{ secrets.VPS_USERNAME }}
+#                   port: 22
+#                   key: ${{ secrets.VPS_PRIV_KEY }}
+#                   source: "."
+#                   target: "~/kathi-archives"
 
-            - name: Build and run Docker container
-              uses: appleboy/ssh-action@master
-              with:
-                  host: ${{ secrets.HOST_IP_ADDRESS }}
-                  username: ${{ secrets.VPS_USERNAME }}
-                  port: 22
-                  key: ${{ secrets.VPS_PRIV_KEY }}
-                  script: |
-                      CONTAINER_ID=$(docker ps -q --filter "name=kathi-archives")
-                      if [ ! -z "$CONTAINER_ID" ]; then
-                          docker stop $CONTAINER_ID
-                          docker rm $CONTAINER_ID
-                          docker rmi kathi-archives:latest
-                          echo "Container stopped and removed"
-                      fi
+#             - name: Build and run Docker container
+#               uses: appleboy/ssh-action@master
+#               with:
+#                   host: ${{ secrets.HOST_IP_ADDRESS }}
+#                   username: ${{ secrets.VPS_USERNAME }}
+#                   port: 22
+#                   key: ${{ secrets.VPS_PRIV_KEY }}
+#                   script: |
+#                       CONTAINER_ID=$(docker ps -q --filter "name=kathi-archives")
+#                       if [ ! -z "$CONTAINER_ID" ]; then
+#                           docker stop $CONTAINER_ID
+#                           docker rm $CONTAINER_ID
+#                           docker rmi kathi-archives:latest
+#                           echo "Container stopped and removed"
+#                       fi
                     
-                      cd ~/kathi-archives
-                      git submodule init
-                      git submodule update
-                      docker build -t kathi-archives:latest .
-                      docker run -d -p 5200:80 --name kathi-archives kathi-archives:latest
-                      cd ~
-                      rm -rf ~/kathi-archives
+#                       cd ~/kathi-archives
+#                       git submodule init
+#                       git submodule update
+#                       docker build -t kathi-archives:latest .
+#                       docker run -d -p 5300:80 --name kathi-archives kathi-archives:latest
+#                       cd ~
+#                       rm -rf ~/kathi-archives
