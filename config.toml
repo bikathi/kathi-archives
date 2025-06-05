@@ -1,4 +1,4 @@
-base_url = "http://archives.bikathihub.tech"
+base_url = "https://archives.bikathihub.tech"
 title = "Bikathi Archives"
 description = "My Personal Blog"
 default_language = "en"
