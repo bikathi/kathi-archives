@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://archives.bikathihub.tech/</loc>
+    </url>
+    <url>
+        <loc>https://archives.bikathihub.tech/about/</loc>
+    </url>
+    <url>
+        <loc>https://archives.bikathihub.tech/categories/</loc>
+    </url>
+    <url>
+        <loc>https://archives.bikathihub.tech/categories/rust/</loc>
+    </url>
+    <url>
+        <loc>https://archives.bikathihub.tech/posts/</loc>
+    </url>
+    <url>
+        <loc>https://archives.bikathihub.tech/posts/rust-ownership-and-borrowing-cheatsheet/</loc>
+        <lastmod>2025-06-01</lastmod>
+    </url>
+    <url>
+        <loc>https://archives.bikathihub.tech/tags/</loc>
+    </url>
+    <url>
+        <loc>https://archives.bikathihub.tech/tags/cheatsheet/</loc>
+    </url>
+    <url>
+        <loc>https://archives.bikathihub.tech/tags/rust/</loc>
+    </url>
+    <url>
+        <loc>https://archives.bikathihub.tech/tags/strings/</loc>
+    </url>
+</urlset>

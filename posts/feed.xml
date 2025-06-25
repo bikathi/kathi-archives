@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Kathi Archives Posts</title>
+	<subtitle>A List of Previous Posts</subtitle>
+	<link href="https://archives.bikathihub.tech/posts/feed.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://archives.bikathihub.tech/posts/"/>
+	<updated>2025-06-01T00:00:00+00:00</updated>
+	<id>https://archives.bikathihub.tech/posts/feed.xml</id>
+	<entry xml:lang="en">
+		<title>Rust Ownership And Borrowing for Beginners</title>
+		<published>2025-06-01T00:00:00+00:00</published>
+		<updated>2025-06-01T00:00:00+00:00</updated>
+		<link href="https://archives.bikathihub.tech/posts/rust-ownership-and-borrowing-cheatsheet/" type="text/html"/>
+		<id>https://archives.bikathihub.tech/posts/rust-ownership-and-borrowing-cheatsheet/</id>
+		<content type="html">&lt;h1 id=&quot;rust-s-approach-to-memory-safety&quot;&gt;Rust’s Approach To Memory Safety&lt;a class=&quot;zola-anchor&quot; href=&quot;#rust-s-approach-to-memory-safety&quot; aria-label=&quot;Anchor link for: rust-s-approach-to-memory-safety&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;In VM-managed languages, the VM manages data both on the stack and the heap. It knows exactly when to put data, copy, update, grow, shrink,
+and remove data.
+The part of the VM that cleans up data when it is no longer in use is called the &lt;strong&gt;garbage collector&lt;&#x2F;strong&gt;.
+However, &lt;strong&gt;Rust doesn’t have a VM (mostly) and consequentially, does not have a garbage collector&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In Rust, it is the work of the developer to know what data goes to the stack, which to the heap, wisely decide when to copy data
+and (although very rare), when to clean unused data.&lt;&#x2F;p&gt;
+&lt;p&gt;Rust is a &lt;em&gt;statically-typed and compiled&lt;&#x2F;em&gt; language. This infers that Rust must know the &lt;strong&gt;type&lt;&#x2F;strong&gt; of each piece of data you create, so that it can
+communicate to the OS the amount of space to allocate (whether on the stack or heap) for that type of data. However, it is fully up to the
+developer to decide what data goes to the heap and which goes to the stack, Rust only calculates the space needed to hold the data for you.
+Such a decision comes with downsides and upsides.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;how-does-memory-work-in-other-languages&quot;&gt;How Does Memory Work In Other Languages?&lt;a class=&quot;zola-anchor&quot; href=&quot;#how-does-memory-work-in-other-languages&quot; aria-label=&quot;Anchor link for: how-does-memory-work-in-other-languages&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;When writing code in a language like Java, Python or Javascript (we’ll use this for all the non-Rust examples in this article),
+you usually don’t give two thoughts about where the data you are storing in your variables is being stored within the context of
+your application and the computers memory. This train of thought is usually abstracted from you by the &amp;lt;INSERT_LANGUAGE_NAME_HERE&amp;gt;
+Virtual Machine (for example the &lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Java_virtual_machine&quot;&gt;Java Virtual Machine&lt;&#x2F;a&gt; for Java, and the
+&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.geeksforgeeks.org&#x2F;python-virtual-machine&#x2F;&quot;&gt;Python Virtual Machine&lt;&#x2F;a&gt; for Python).&lt;&#x2F;p&gt;
+&lt;p&gt;It is the duty of the virtual machine to know where to store the data you assign to your variables within the context of your computer
+memory, and to ensure the data in that memory is cleaned up when you don’t need it any more. This technology eases the difficulty of writing
+code and moreso, has allowed developers over the years to write code that runs on multiple platforms, &lt;strong&gt;cross platform code&lt;&#x2F;strong&gt;, because the
+VMs can be customized to behave according to the specifications for that platform.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;what-is-memory-stack-versus-heap&quot;&gt;What Is Memory?: Stack Versus Heap&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-is-memory-stack-versus-heap&quot; aria-label=&quot;Anchor link for: what-is-memory-stack-versus-heap&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;The term &lt;em&gt;memory&lt;&#x2F;em&gt; can mean alot of things to a lot of different people within the world of software engineering. In our case, we will think
+of memory as &lt;strong&gt;the part of your computer that temporarily holds data as you’re working with it before it is permanently saved onto the SSD&lt;&#x2F;strong&gt;.
+This is called the &lt;strong&gt;RAM (Random Access Memory)&lt;&#x2F;strong&gt;. Unlike your SSD space, RAM space is very limited and so, your OS has to be very considerate
+of the amount of space it assigns to your program in the RAM, and more importantly &lt;strong&gt;how&lt;&#x2F;strong&gt; it stores the data in the RAM.
+Within your RAM, therefore, data can be stored in one of two ‘places’, the &lt;strong&gt;stack&lt;&#x2F;strong&gt; or the &lt;strong&gt;heap&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-stack&quot;&gt;The Stack&lt;a class=&quot;zola-anchor&quot; href=&quot;#the-stack&quot; aria-label=&quot;Anchor link for: the-stack&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Is exactly what the name says i.e. data is stored in such a manner that one piece of data appears ‘on top of’ the other.&lt;&#x2F;li&gt;
+&lt;li&gt;If you look at the stack from a top-down view, you’ll see new data ‘on top’.&lt;&#x2F;li&gt;
+&lt;li&gt;The OS operates on data on the stack in a LIFO (&lt;strong&gt;Last In First Out&lt;&#x2F;strong&gt;) manner, such that, the newest data to be added on the stack
+will always be the first to be removed (a process technically called &lt;em&gt;cleaning up&lt;&#x2F;em&gt;).&lt;&#x2F;li&gt;
+&lt;li&gt;Because data on the stack has to be inserted and removed quickly, the OS and many programming languages,
+only store simple data on the stack (technically called &lt;strong&gt;primitive data&lt;&#x2F;strong&gt;)&lt;&#x2F;li&gt;
+&lt;li&gt;Such data includes:
+&lt;ul&gt;
+&lt;li&gt;Plain whole numbers (integers) like 1, 2, 3, 400, 700…&lt;&#x2F;li&gt;
+&lt;li&gt;Decimal numbers like 10.8, 3.147…&lt;&#x2F;li&gt;
+&lt;li&gt;One character like x, y, k, b…&lt;&#x2F;li&gt;
+&lt;li&gt;True or False values (booleans)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;The simplicity of this data allows them to be copied easily (as in without using up a lot of resources).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;the-heap&quot;&gt;The Heap&lt;a class=&quot;zola-anchor&quot; href=&quot;#the-heap&quot; aria-label=&quot;Anchor link for: the-heap&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You can think of the heap like a laundry pile, all things, big and small can be found here with no particular order, meaning that
+there is no FIFO-fanciness here.&lt;&#x2F;li&gt;
+&lt;li&gt;This means that copying such data is usually expensive (as in uses up a lot of resources), but also that such data can easily be expanded
+or shrunk down (like in the case of an Array).&lt;&#x2F;li&gt;
+&lt;li&gt;Data stored here includes:
+&lt;ul&gt;
+&lt;li&gt;Strings e.g. names of people and places, hyperlinks e.t.c…&lt;&#x2F;li&gt;
+&lt;li&gt;Lists and arrays e.g. list of groceries&lt;&#x2F;li&gt;
+&lt;li&gt;Complex objects (like instances of a class in Java and &lt;em&gt;struct&lt;&#x2F;em&gt; instances in Rust)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;rust-s-approach-in-a-nutshell&quot;&gt;Rust’s Approach in a Nutshell&lt;a class=&quot;zola-anchor&quot; href=&quot;#rust-s-approach-in-a-nutshell&quot; aria-label=&quot;Anchor link for: rust-s-approach-in-a-nutshell&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Rust allocates local variables (variables created within a certain scope e.g. within a function) in &lt;strong&gt;stack frames&lt;&#x2F;strong&gt;, which is a mapping between
+a variable and the value it is associated with and lives on the &lt;strong&gt;stack&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;The stack frame is &lt;strong&gt;allocated when a function is called&lt;&#x2F;strong&gt; and &lt;strong&gt;de-allocated when the call ends&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;The stack frame is made up of two parts:
+&lt;ol&gt;
+&lt;li&gt;The variable - these are what you define in your code to hold data for you.&lt;&#x2F;li&gt;
+&lt;li&gt;The data the variable points to - can be one of two things: &lt;strong&gt;pure data&lt;&#x2F;strong&gt; like numbers, booleans e.t.c or &lt;strong&gt;pointers&lt;&#x2F;strong&gt; (more on that in a few)&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+</feed>
